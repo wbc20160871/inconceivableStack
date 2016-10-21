@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        span {
+            margin:20px 510px;
+        }
+        .wp {
+            margin:20px 410px;
+        }
+    </style>
+</head>
+<body>
+    <span>注册页面</span>
+    <hr>
+    <form>
+        <div class="wp">
+            <div>
+                <label>
+                    用户名：<input type="text">
+                </label>
+            </div>            
+            <div>
+                <label>
+                    用户密码：<input type="password">
+                </label>
+            </div>            
+            <div>
+                <label>性别</label>
+                <label>男</label><input type="radio" name="gander" checked>
+                <label>女</label><input type="radio" name="gander">
+            </div>
+            <div>
+                <label>学历</label>
+                <select name="" id="">
+                    <option value="">请选择</option>
+                    <option value="">大专</option>
+                    <option value="">本科</option>
+                    <option value="">研究生</option>
+                </select>
+            </div>            
+            <div>
+                <label>爱好</label>
+                <label for=""><input type="checkbox">旅游</label>
+                <label for=""><input type="checkbox">游泳</label>
+                <label for=""><input type="checkbox">篮球</label>
+            </div>
+            <div>
+                自我介绍<textarea name="" id="" cols="30" rows="10"></textarea>
+            </div>           
+            <div>
+                <label for=""><input type="file"></label>
+            </div>
+
+            <input type="submit" value="注册">
+            <input type="reset" value="清空">
+            <input type="button" value="返回" id= "backBtn">
+        </div>
+    </form>
+
+    <script src = "../../wbc/lib/jquery-3.1.1.js"></script>
+    <script>
+        $('#backBtn').on('click',function() {
+            location.href = "commindex.html";
+        });
+    </script>
+</body>
+</html>
