@@ -3,30 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    <style type="text/css">
+        span {
+            margin:20px 510px;
+        }
+        .wp {
+            margin:20px 410px;
+            width: 300px;
+        }
+        .wp div.name-wp, .wp div.pswd-wp {
+            margin-top: 10px;
+            width: 300px;
+        }
+        .name-wp{
+            margin:0 auto;
+            width: 100%;
+        }
+        .pswd-wp {
+            margin:0 auto;
+            width: 100%;
+        }
+        .ipt-wp {
+            width: 300px;
+            margin:0 auto;
+        }
+        .ipt-wp input {
+            margin:10px 8px;
+            }
+        }
+    </style>
 </head>
 <body>
     <span>登录页面</span>
     <hr>
+    <div class="wp">
+        <form>
+            <div class="name-wp">
+                <label>
+                    账号：<input type="text">
+                </label>
+            </div>
 
-    <form>
-        <div>
-            <label>
-                账号：<input type="text">
-            </label>
-        </div>
-
-        <div>
-            <label>
-                密码：<input type="password">
-            </label>
-        </div>
-
-        <input type="submit" value="登录">
-        <input type="reset" value="清空">
-        <input type="button" value="返回" id="backBtn">
-
-    </form>
-    
+            <div class='pswd-wp'>
+                <label>
+                    密码：<input type="password">
+                </label>
+            </div>
+            <div class="ipt-wp">
+                <input type="submit" value="登录">
+                <input type="reset" value="清空">
+                <input type="button" value="返回" id="backBtn">
+            </div>
+        </form>
+    </div>   
    <script src = "../../wbc/lib/jquery-3.1.1.js"></script>
    <script>
         $('#backBtn').on('click',function() {
