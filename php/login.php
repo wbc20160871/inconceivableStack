@@ -20,7 +20,7 @@ $user = $db -> rawQuery($sql);
 if (empty($user)) {
     echo '登录失败，请<a href="../login.html">重试</a>';
 } else {
-    echo '<script>location.href="../main.html";</script>';
+    echo '注册成功，请点<a herf="../reg.html">这里</a>';
 }
 
 ?>
