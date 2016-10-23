@@ -11,16 +11,16 @@ require_once ('util/db.php');
 $username = $_POST['username'];
 $password = $_POST['password'];
 
-$sql = "select * from wbc6_users where username='$username' and password='$password'";
+$sql = "select * from reg_login where username='$username' and password='$password'";
 
 // echo $sql;
 
 $user = $db -> rawQuery($sql);
 
 if (empty($user)) {
-    echo '登录失败，请<a href="../login.html">重试</a>';
+    echo '登录失败，请<a href="../regLoginDemo/login.html">重试</a>';
 } else {
-    echo '注册成功，请点<a herf="../reg.html">这里</a>';
+    echo '<script>location.href="../regLoginDemo/main.html";</script>';
 }
 
 ?>
