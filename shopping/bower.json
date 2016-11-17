@@ -1,0 +1,21 @@
+{
+  "name": "shopping",
+  "homepage": "https://github.com/wbc20160871/wbc8",
+  "authors": [
+    "wbc20160871 <294916011@qq.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "layer": "*",
+    "angular": "angularjs#^1.5.8"
+  }
+}

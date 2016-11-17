@@ -1,0 +1,147 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        * {
+            margin:0;
+            padding:0;
+        }
+
+        ul, li {
+            list-style: none;
+        }
+
+        #todos {
+            background-color:#ccc;
+            width: 300px;
+            margin:30px auto;
+        }
+
+        li span.del-btn {
+            float: right;
+            cursor: pointer;
+            display: none; 
+        }
+
+        .todo-list li:hover .del-btn {
+            display: block;
+        }
+
+        .todo-text.complete {
+            text-decoration: line-through;
+            color:red;
+            font-style:italic;
+        }
+
+        .edit {
+            display:none;
+        }
+
+        li.editing .edit {
+            display:block;
+        }
+
+        li.editing .wp {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="todos">
+        
+        <div><h1>TODOS</h1></div>
+
+        <div>
+            <div>
+                <input v-model="newTodo" v-on:keyup.enter="addTodo" type="text" placeholder="你想写点什么？">
+            </div>
+        </div>
+    
+        <ul class="todo-list">
+            <li v-for="todo in todos" v-bind:class="{editing: todo == editedTodo}">
+                <div class="wp">
+                    <input type="checkbox" v-model="todo.completed">
+                    <span v-on:dblclick="editTodo(todo)" class="todo-text" v-bind:class="{complete:todo.completed}">{{todo.text}}</span>
+                    <span class="del-btn" v-on:click="removeTodo(todo)">&times;</span>
+                </div>
+                <input v-on:blur="doneEidt(todo)" class="edit" type="text" v-model="todo.text">
+            </li>
+        </ul>
+        <hr>
+
+        <div>
+            <span>还剩{{remaining}}项</span>
+        </div>
+    </div>
+
+
+    <script src="bower_components/vue/dist/vue.min.js"></script>
+    <script>
+        var  STORAGE_KEY = "wbc-8-vue";
+
+        var todoStorage = {
+             save: function(todos) {
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify(todos));
+            },
+            fetch: function() {
+                var todos = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+                return todos;
+            }
+        };
+
+        var app = new Vue({
+            el: '#todos',
+
+            data: {
+                newTodo: '',
+                todos: todoStorage.fetch(),
+                editedTodo: null
+            },
+
+            computed: {
+                remaining: function() {
+                    var tmptodos = this.todos.filter(function(obj) {
+                        return !obj.completed;
+                    });
+                    return tmptodos.length;
+                }
+            },
+
+            watch: {
+                todos: {
+                    handler: function(todos) {
+                        todoStorage.save(todos);
+                    },
+                    deep: true
+                }
+            },
+
+            filter: function() {
+
+            },
+
+            methods: {
+                addTodo: function() {
+                    this.todos.push({
+                            text: this.newTodo,
+                            completed:false
+                        });
+                    this.newTodo = '';
+                },
+                removeTodo: function(todo) {
+                    this.todos.splice(this.todos.indexOf(todo), 1);
+                },
+                editTodo: function(todo) {
+                    this.editedTodo = todo;
+                },
+                doneEidt: function(todo) {
+                    this.editedTodo = null;
+                    todo.text = todo.text.trim();
+                }
+            }
+        });
+    </script>
+</body>
+</html>
